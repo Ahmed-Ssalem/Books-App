@@ -19,10 +19,16 @@ namespace Books_App.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [HttpGet]
+        [HttpGet("GetByIdAsync")]
         public async Task<IActionResult> GetByIdAsync(long id)
         {
             return Ok(await _unitOfWork.Books.GetByIdAsync(id));
+        }
+
+        [HttpGet("GetAllAsync")]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            return Ok(await _unitOfWork.Books.GetAllAsync());
         }
     }
 }

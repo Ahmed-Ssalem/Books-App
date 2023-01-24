@@ -1,10 +1,8 @@
 ﻿using BooksApp.Core.Entities;
 using BooksApp.Core.Interfaces.Repositories;
 using BooksApp.Presistence.Context;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BooksApp.Presistence.Repositories
@@ -17,9 +15,9 @@ namespace BooksApp.Presistence.Repositories
         {
             _context = context;
         }
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Set<T>().ToListAsync();
         }
 
         public async Task<T> GetByIdAsync(long id)
